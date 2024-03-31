@@ -1,0 +1,92 @@
+
+install GNU for windows
+
+For Windows:
+If you're using Windows, you can install GCC by installing MinGW (Minimalist GNU for Windows) or using tools like MSYS2.
+
+MinGW:
+Download and install MinGW from the official website: MinGW
+
+////MSYS2:
+////Download and install MSYS2 from the official website: MSYS2
+
+installing to 
+C:\MinGW
+
+set system path
+
+After installing GCC, you should be able to run g++ from the command line without encountering the error. 
+Then, you can proceed with compiling your C++ code into a DLL.
+
+Check Python Interpreter Architecture:  m32 or m64
+python -c "import platform; print(platform.architecture())"
+
+returned:
+('64bit', 'WindowsPE')
+
+Check DLL
+C:\leoData\GITHUB\python-c-proj-repository>file square.dll
+square.dll: PE32+ executable (DLL) (console) x86-64, for MS Windows, 18 sections
+
+g++ -shared -o square.dll -m64 -fPIC square.cpp
+
+g++ -shared -o square.dll -fPIC square.cpp
+
+gcc -shared -o square.dll -m64  square.c 
+
+gcc -shared -o square.dll -m64  square.c -lkernel32
+
+
+gcc -o test.exe test.c -L. -lsquare
+
+
+square_lib = ctypes.CDLL(dll_path, winmode = 0)
+
+g++ -o test.exe test.cpp -L. -m64 -fPIC -lsquare
+
+----------------
+gcc -shared -o pextent.dll -m64 -IC:\ProgramData\anaconda3\include pextent.c -lpython3.11.5
+
+gcc -shared -o pextent.dll -m64 -IC:\ProgramData\anaconda3\include -LC:\ProgramData\anaconda3\Lib pextent.c -lpython3.11.5
+
+gcc -shared -o pextent.dll -m64 -I\ProgramData\anaconda3\include pextent.c
+
+gcc -shared -o pextent.dll -m64 -I\ProgramData\anaconda3\include -L\ProgramData\anaconda3\libs pextent.c -lpython311
+gcc -shared -o pextent.dll -I\ProgramData\anaconda3\include -L\ProgramData\anaconda3\libs pextent.c -lpython311
+
+
+After installing Anaconda, did you execute 
+conda install mingw libpython
+? 
+And do you have any other C++ compilers installed, other than MinGW?
+---------------
+https://gist.github.com/physacco/2e1b52415f3a964ad2a542a99bebed8f?permalink_comment_id=2178847
+///python setup.py build
+///python setup.py build_ext  --plat-name=win-amd64 --inplace
+
+This will create editable module in current folder
+pip install -e .
+pip install --global-option build --global-option --debug pextent
+to see print in setup.py
+pip install -e . --verbose 
+   
+This will create module in  folder in C:\Users\leo37\AppData\Roaming\Python\Python311\site-packages
+pip install . --verbose 
+pip show pextent
+pip uninstall pextent
+
+https://docs.python.org/3/extending/extending.html
+
+pip list
+
+dumpbin /dependents pextent.cp311-win_amd64.pyd
+
+dumpbin /symbols pextent.cp311-win_amd64.pyd
+
+dumpbin /imports pextent.cp311-win_amd64.pyd
+
+-----
+could be used for looking for debug symbols
+objdump --syms pextent.cp311-win_amd64.pyd
+gdb pextent.cp311-win_amd64.pyd
+----

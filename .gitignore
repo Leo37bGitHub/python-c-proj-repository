@@ -1,0 +1,6 @@
+build/
+pextent.egg-info/
+
+*.pyd
+*.exe
+*.dll

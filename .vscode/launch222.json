@@ -1,0 +1,23 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Debug",
+            "request": "launch",
+            "stopOnEntry": true,
+            "type": "python",
+            "program": "C:/leoData/GITHUB/python-c-proj-repository/mainExt.py",
+            "cwd": "",
+            "justMyCode": false,
+            "console": "integratedTerminal"
+        },
+        { 
+            "name": "GDB Attach proc 0",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "C:/ProgramData/anaconda3/python",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb"
+        }
+    ]
+}
