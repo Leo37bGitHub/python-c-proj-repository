@@ -36,6 +36,12 @@ static PyObject* hello_world(PyObject* self, PyObject* args) {
     
     // Specify the directory path
     LPCWSTR directoryPath = L"C:\\leoData\\GITHUB\\python-c-proj-repository\\*.*";
+    std::wstring directoryPathStr(directoryPath);
+	std::string narrowDirectoryPathStr(directoryPathStr.begin(), directoryPathStr.end());
+    spdlog::set_level(spdlog::level::debug); // Set global log level to debug
+	spdlog::debug("directoryPath pointer={} ", (void*)(directoryPath));
+	std::cout << "Value pointed to by directoryPath: " << *directoryPath << std::endl;
+    spdlog::debug("directoryPath = {} ", narrowDirectoryPathStr);
 
 	spdlog::info("Welcome to spdlog!");
     
