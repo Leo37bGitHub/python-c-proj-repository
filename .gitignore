@@ -4,3 +4,8 @@ pextent.egg-info/
 *.pyd
 *.exe
 *.dll
+*.exp
+*.ilk
+*.lib
+*.pdb
+*.obj

@@ -8,6 +8,10 @@
 #include <Python.h>
 #include <windows.h>
 #include <wchar.h>  // Include wchar_t definition
+#include <iostream>
+
+
+////#include "spdlog/spdlog.h"
 
 ///#ifdef _DEBUG_WAS_DEFINED
 ///#define _DEBUG
@@ -17,6 +21,8 @@
 ///#ifdef _DEBUG
 ///#       define Py_DEBUG
 ///#endif
+
+
 
 const char* pystart = 
 "print('Start')\n\
@@ -31,10 +37,14 @@ static PyObject* hello_world(PyObject* self, PyObject* args) {
     
     // Specify the directory path
     LPCWSTR directoryPath = L"C:\\leoData\\GITHUB\\python-c-proj-repository\\*.*";
+
+	///////spdlog::info("Welcome to spdlog!");
+    
 	//LPCWSTR directoryPath = L"*";
 	//printf("%ws\n", directoryPath);                        
 
     // Find the first file in the directory
+	
     //hFind = FindFirstFile(directoryPath, &findFileData);
 	hFind = FindFirstFileW(L"C:\\leoData\\GITHUB\\python-c-proj-repository\\*.*", &findFileData);
 	//hFind = FindFirstFileA("C:\\leoData\\GITHUB\\python-c-proj-repository", &findFileData);
@@ -53,7 +63,8 @@ static PyObject* hello_world(PyObject* self, PyObject* args) {
 	
 	
     printf("Hello, world!\n");
-    Py_RETURN_NONE;
+	std::cout << "hello Leonid" << std::endl;
+     Py_RETURN_NONE;
 }
 
 

@@ -1,6 +1,11 @@
 {
     "files.associations": {
         "windows.h": "c",
-        "python.h": "c"
-    }
+        "python.h": "c",
+        "iostream": "cpp"
+    },
+   
+    "python.envFile": "${workspaceFolder}/.env",
+    "C_Cpp.errorSquiggles": "enabled"
+    
 }

@@ -81,12 +81,31 @@ pip list
 
 dumpbin /dependents pextent.cp311-win_amd64.pyd
 
-dumpbin /symbols pextent.cp311-win_amd64.pyd
 
 dumpbin /imports pextent.cp311-win_amd64.pyd
 
 -----
 could be used for looking for debug symbols
+
+dumpbin /symbols pextent.cp311-win_amd64.pyd
 objdump --syms pextent.cp311-win_amd64.pyd
 gdb pextent.cp311-win_amd64.pyd
-----
+
+dumpbin /symbols pextent.exe
+objdump --syms gdb pextent.exe
+gdb pextent.exe
+-------
+produces PYD with debug symbols:
+gcc -shared -o pextent.cp311-win_amd64.pyd pextent.c -I "C:\\ProgramData\\anaconda3\\include" -L "C:\\ProgramData\\anaconda3\\libs" -lpython311
+
+no debug symbols:
+python setup.py build_ext --debug --inplace --verbose 
+
+python setup.py build_ext --inplace --compiler=mingw64 --verbose
+
+check for symbols:
+nm -C -l -f sysv pextent.cp311-win_amd64.pyd
+
+gdb commands:
+next, step (s)
+

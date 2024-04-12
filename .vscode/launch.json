@@ -1,8 +1,10 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
+        
         {
-            "name": "(gdb) Launch",
+            "name": "(gdb) mingw64 Launch",
             "type": "cppdbg",
             "request": "launch",
             "program": "C:/mingw64/bin/c++.exe",
@@ -26,13 +28,17 @@
                 }
             ]
         },
+       
+
         {
-            "name": "(gdb) Attach",
+            "name": "Attach to Python Process Not VS Tool",
             "type": "cppdbg",
             "request": "attach",
-            "program": "C:/ProgramData/anaconda3/python",
+            "program": "C:\\ProgramData\\anaconda3\\python",
             "processId": "${command:pickProcess}",
-            "MIMode": "gdb",
+            //"MIMode": "gdb",
+            //"miDebuggerPath": "gdb",
+            
             "setupCommands": [
                 {
                     "description": "Enable pretty-printing for gdb",
@@ -40,15 +46,19 @@
                     "ignoreFailures": true
                 }
             ]
+           
         },
+        
         {
             "name": "Python: Current File",
             "request": "launch",
             "type": "debugpy",
             "program": "${file}",
             "console": "externalTerminal",
-            "justMyCode": false
+            "justMyCode": false,
+            
         },
+        /*
         {
             "name": "C/C++: gcc.exe build and debug active file",
             "type": "cppdbg",
@@ -79,8 +89,87 @@
                 }
             ],
             "preLaunchTask": "C/C++: gcc.exe build active file",
+
+        },
+        */
+        {
+            "name": "mingw64 PYD client",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "C:/ProgramData/anaconda3/python.exe",
+            "args": ["C:/leoData/GITHUB/python-c-proj-repository/mainExt.py"],
+            "cwd": "C:/leoData/GITHUB/python-c-proj-repository",
+            "environment": [
+                {
+                    "name": "PYTHONHOME",
+                    "value": "C:\\ProgramData\\anaconda3"
+                },
+            ],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true,
+                    //"ex": "r"
+                },
+                
+            ],
+            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
             
+            //"preLaunchTask": "Build Python C Extension",
+        },
+        {
+            "name": "run PYD client",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "C:/leoData/GITHUB/python-c-proj-repository/mainExt.py",
+            "args": [],
+            "cwd":"C:/leoData/GITHUB/python-c-proj-repository",
+            "console": "externalTerminal",
+            "justMyCode": false,
+            "preLaunchTask": "Build VS Tool Python Extension (Debug)",
+                 
+        },
+       
+        {
+            "name": "Attach mingw64 PYD",
+            "type": "cppdbg",
+            "request": "attach",
+            "program": "C:/ProgramData/anaconda3/python.exe",
+            "processId": "${command:pickProcess}",
+            "MIMode": "gdb",
+            "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            //"preLaunchTask": "Build Python C Extension",
+        },
+        {
+            "name": "Attach PYD with VS Tools",
+            "type": "cppvsdbg",
+            "request": "attach",
+            "processId": "${command:pickProcess}",
             
-        }
+        },
+        {
+            "name": "Launch VS Tool",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "C:/leoData/GITHUB/python-c-proj-repository/pextent.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "C:/leoData/GITHUB/python-c-proj-repository",
+            "environment": [],
+            "console": "integratedTerminal",
+            "preLaunchTask": "Build VS Tool C++ (Debug)",
+            
+        },
+   
     ]
 }
