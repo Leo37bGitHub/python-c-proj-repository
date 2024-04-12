@@ -10,8 +10,7 @@
 #include <wchar.h>  // Include wchar_t definition
 #include <iostream>
 
-
-////#include "spdlog/spdlog.h"
+#include "spdlog/spdlog.h"
 
 ///#ifdef _DEBUG_WAS_DEFINED
 ///#define _DEBUG
@@ -38,7 +37,7 @@ static PyObject* hello_world(PyObject* self, PyObject* args) {
     // Specify the directory path
     LPCWSTR directoryPath = L"C:\\leoData\\GITHUB\\python-c-proj-repository\\*.*";
 
-	///////spdlog::info("Welcome to spdlog!");
+	spdlog::info("Welcome to spdlog!");
     
 	//LPCWSTR directoryPath = L"*";
 	//printf("%ws\n", directoryPath);                        
